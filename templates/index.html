@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App tareas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 100vh;" class="ui container">
+        <h1 class="ui center aligned header">App tareas</h1>
+        <form class="ui form" action="/agregar" method="post">
+            <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%;" class="field">
+                <label for="titulo">Tarea</label>
+                <input type="text" name="titulo" placeholder="Agregar tarea...">
+                <br>
+                <button class="ui blue button" type="submit">Agregar</button>
+                <hr style="width:300px;">
+            </div>
+        </form>
+        {% for tarea in lista_tareas %}
+        <div class="ui segment">
+            <p class="ui big header">{{ tarea.id }} | {{ tarea.title }}</p>
+            {% if tarea.complete == False %}
+                <span class="ui gray label">Incompleta</span>
+            {% else %}
+                <span class="ui green label">Completa</span>
+            {% endif %}
+            <a class="ui blue button" href="/actualizar/{{ tarea.id }}">Estado</a>
+            <a class="ui red button" href="/eliminar/{{ tarea.id }}">Eliminar</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
