@@ -8,8 +8,8 @@ db = SQLAlchemy(app)
 
 class Tarea(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
-    complete = db.Column(db.Boolean)
+    titulo = db.Column(db.String(100))
+    completa = db.Column(db.Boolean)
 
 @app.route('/')
 def index():
@@ -22,7 +22,7 @@ def index():
 def add():
     # agregar nueva tarea
     titulo = request.form.get('titulo')
-    nueva_tarea = Tarea(title=titulo, complete=False)
+    nueva_tarea = Tarea(titulo=titulo, completa=False)
     db.session.add(nueva_tarea)
     db.session.commit()
     return redirect(url_for('index'))
@@ -31,7 +31,7 @@ def add():
 def actualizar(id_tarea):
     # actualizar tarea
     tarea = Tarea.query.filter_by(id=id_tarea).first()
-    tarea.complete = not tarea.complete
+    tarea.completa = not tarea.completa
     db.session.commit()
     return redirect(url_for('index'))
 
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     db.create_all()
 
     # Crear nueva tarea en la db
-    # nueva_tarea = Tarea(title='tarea 1', complete=False)
+    # nueva_tarea = Tarea(titulo='tarea 1', completa=False)
     # db.session.add(nueva_tarea)
     # db.session.commit()
 

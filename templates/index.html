@@ -22,8 +22,8 @@
         </form>
         {% for tarea in lista_tareas %}
         <div class="ui segment">
-            <p class="ui big header">{{ tarea.id }} | {{ tarea.title }}</p>
-            {% if tarea.complete == False %}
+            <p class="ui big header">{{ tarea.id }} | {{ tarea.titulo }}</p>
+            {% if tarea.completa == False %}
                 <span class="ui gray label">Incompleta</span>
             {% else %}
                 <span class="ui green label">Completa</span>
