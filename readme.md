@@ -1,0 +1,1 @@
+sólo iniciar, la DB es un archivo
